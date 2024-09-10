@@ -1,4 +1,4 @@
-## Bootcamp Backend with Elysia Bun runtime
+# Bootcamp Backend with Elysia Bun runtime
 
 ## Getting Started
 To get started with this template, simply paste this command into your terminal:
