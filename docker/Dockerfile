@@ -1,14 +1,16 @@
-FROM --platform=linux/amd64 node:20.11.0-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+FROM oven/bun
 
-FROM --platform=linux/amd64 node:20.11.0-alpine AS server
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --production
-COPY --from=builder ./app/build ./build
+
+COPY . .
+
+RUN bun install --production
+
+COPY src src
+COPY tsconfig.json .
+# COPY public public
+
+ENV NODE_ENV production
+CMD ["bun", "src/index.ts"]
+
 EXPOSE 3000
-CMD ["npm", "run", "start"]
