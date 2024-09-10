@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      image_name: ${{ steps.build.outputs.image_name }}
+      image_name: ${{ steps.set_image_name.outputs.image_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,13 +24,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t your-dockerhub-username/your-app-name:latest .
-        id: build
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.APP_NAME }}:latest .
 
       - name: Push Docker image
         run: |
-          docker push your-dockerhub-username/your-app-name:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.APP_NAME }}:latest
 
       - name: Set output image name
-        id: image
-        run: echo "image_name=your-dockerhub-username/your-app-name:latest" >> $GITHUB_ENV
+        id: set_image_name
+        run: echo "image_name=${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.APP_NAME }}:latest" >> $GITHUB_OUTPUT
