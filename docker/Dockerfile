@@ -1,4 +1,4 @@
-FROM oven/bun
+FROM --platform=linux/amd64 oven/bun
 
 WORKDIR /app
 
