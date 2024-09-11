@@ -8,10 +8,11 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN bun install
+RUN bun install --production
+RUN bun run build
 
 # Expose the desired port (e.g., 3000)
 EXPOSE 3000
 
 # Command to run the application
-CMD ["bun", "start"]
+CMD ["bun", "dist/index.js"]
