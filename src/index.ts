@@ -10,6 +10,7 @@ try {
                     hostname: '0.0.0.0', // This allows external access, including from CapRover
                   });
 
+  console.log(app)
   console.log(
     `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
   );
