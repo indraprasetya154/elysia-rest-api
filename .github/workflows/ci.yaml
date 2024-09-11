@@ -38,7 +38,7 @@ jobs:
     needs: build
     steps:
       - name: Deploy Image to CapRover
-        uses: caprover/deploy-from-github@d76580d79952f6841c453bb3ed37ef452b19752c
+        uses: caprover/deploy-from-github@v1.1.2
         with:
           server: ${{ secrets.CAPROVER_SERVER }}
           app: ${{ secrets.APP_NAME }}
