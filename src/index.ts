@@ -5,7 +5,10 @@ try {
                   get("/", () => "Hello Elysia.js")
                   .get('/user/:id', ({ params: { id }}) => id)
                   .get('/category/:id', ({ params: { id }}) => id)
-                  .listen(3000);
+                  .listen({
+                    port: 3000,
+                    hostname: '0.0.0.0', // This allows external access, including from CapRover
+                  });
 
   console.log(
     `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
