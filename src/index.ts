@@ -6,6 +6,7 @@ const app = new Elysia().
                 .get('/category/:id', ({ params: { id }}) => id)
                 .listen(3000);
 
+console.log(app)
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
