@@ -13,6 +13,7 @@ if (isNaN(port)) {
 const app = new Elysia().
                 get("/", () => "Hello Elysia.js")
                 .get('/user/:id', ({ params: { id }}) => id)
+                .get('/category/:id', ({ params: { id }}) => id)
                 .listen(port);
 
 console.log(
