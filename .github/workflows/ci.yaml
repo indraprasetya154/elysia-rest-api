@@ -41,11 +41,9 @@ jobs:
     needs: build
     steps:
       - name: Deploy Image to CapRover
-        env:
-          IMAGE_URL: ${{needs.build.outputs.image_url}}
         uses: caprover/deploy-from-github@v1.1.2
         with:
           server: ${{ secrets.CAPROVER_SERVER }}
           app: ${{ secrets.APP_NAME }}
           token: ${{ secrets.APP_TOKEN }}
-          image: $IMAGE_URL
+          image: ${{needs.build.outputs.image_url}}
