@@ -41,7 +41,9 @@ jobs:
     needs: build
     steps:
       - name: Image URL
-        run: echo ${{needs.build.outputs.image_url}}
+        env:
+          IMAGE_URL: ${{needs.build.outputs.image_url}}
+        run: echo "$IMAGE_URL"
       - name: Deploy Image to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
