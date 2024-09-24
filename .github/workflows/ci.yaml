@@ -23,12 +23,11 @@ jobs:
               registry: ghcr.io
               username: ${{ github.repository_owner }}
               password: ${{ secrets.GITHUB_TOKEN }}
-
-      - id: image_url_step
-        name: Preset Image Name
+      - name: Preset Image Name
         run: echo "IMAGE_URL=$(echo ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-      - name: image name
-        run: echo "${{ env.IMAGE_URL }}"
+      - id: image_url_step
+        name: Output Image URL
+        run: echo "IMAGE_URL=${{ env.IMAGE_URL }}" >> "$GITHUB_OUTPUT"
       - name: Build and push Docker Image
         uses: docker/build-push-action@v5
         with:
